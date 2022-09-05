@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Cica extends Cicacreate{
@@ -22,6 +27,7 @@ public class Cica extends Cicacreate{
       while(!parancs.equals("vege")) {
         System.out.print(this.nev + ">");
         parancs = sc.nextLine();
+        //Etetés
         if(parancs.equals("etet")){
           this.ehseg = this.ehseg - 10;
         }
@@ -48,24 +54,56 @@ private void eheztetes() {
     {
       System.out.println("Meow mindjárt éhen halok!");
     }
-    
-
-
-
  }
- private void elet_kezeles() {
+
+
+private void elet_kezeles() {
     if(this.ehseg> EHSEG_HATAR) {
       System.out.println("Éhen haltam...");
       System.exit(0);
     }
  }
- private void olvas_allapot()
- {
 
+
+private void kiir_allapot() 
+  {
+    try {
+      probal_kiir_allapot();
+    } catch (IOException e) {
+      System.err.println("Hiba az írás során.");
+    }
+  }
+
+private void probal_kiir_allapot() throws IOException {
+    FileWriter fw = new FileWriter("allapot.txt", false);
+    PrintWriter pw = new PrintWriter(fw);
+    pw.println(this.ehseg);
+    pw.close();
+    fw.close();
+}  
+
+
+private void olvas_allapot()
+ {
+    try 
+    {
+      probal_olvas_allapot();
+    } catch (FileNotFoundException e)  
+    {
+      System.err.println("A file nem található!");
+    }
  }
 
- private void kiir_allapot() 
+
+private void probal_olvas_allapot() throws FileNotFoundException
  {
-    
+   File f = new File("allapot.txt");
+   Scanner sc = new Scanner(f);
+   String ehsegStr = sc.nextLine();
+   this.ehseg = Integer.parseInt(ehsegStr);
+   sc.close();
+   
  }
+
+
 }

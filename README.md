@@ -1,1 +1,1 @@
-# Macska project v.0.0.2
+# Macska project v.1.0.0

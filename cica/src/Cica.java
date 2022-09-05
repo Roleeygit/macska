@@ -8,7 +8,9 @@ import java.util.Scanner;
 public class Cica extends Cicacreate{
     public String nev;
     public int ehseg = -10;
+    public int szomj = -5;
     private final int EHSEG_HATAR = 10;
+    private final int SZOMJ_HATAR = 10;
     
 
     public Cica(String string) {
@@ -34,8 +36,13 @@ public class Cica extends Cicacreate{
         if(parancs.equals("vege")){
           kiir_allapot();
         }
+        if(parancs.equals("itat")){
+          this.szomj = this.szomj - 3;
+        }
         eheztetes();
         elet_kezeles();
+        szomjaztas();
+        szomj_kezeles();
         
   
         }
@@ -55,6 +62,29 @@ private void eheztetes() {
       System.out.println("Meow mindjárt éhen halok!");
     }
  }
+
+ private void szomjaztas() {
+  //Macska szomjaztatása
+  this.szomj ++;
+  if(this.szomj>-1)
+  {
+    System.out.println("Szomjas vagyok!");
+  }
+  if(this.szomj>2)
+  {
+    System.out.println("Nagyon szomjas vagyok!");
+  }
+
+}
+
+private void szomj_kezeles() {
+  if(this.szomj>SZOMJ_HATAR) {
+    System.out.println("Szomjan haltam...");
+    System.exit(0);
+  }
+}
+
+
 
 
 private void elet_kezeles() {
